@@ -12,7 +12,7 @@ client.login(process.env.BOT_TOKEN);
 client.on("ready", () => {
     console.log(`Logged in as ${client.user.tag}!`);
     console.log(`Latest commit hash: ` + hash);
-    console.log(`Commit: `);
+    console.log(`Commit: ` + commit);
     client.user.setActivity('*' + 'help', { type: 'PLAYING' });
 });
 
@@ -99,7 +99,7 @@ require('child_process').exec('git rev-parse HEAD', function(err, stdout){
 })
 var commit;
 require('child_process').exec('git rev-parse HEAD_COMMIT', function(err, out){
-  commit = out;
+  commit = out.toString();
 })
 
 app.post('/git', (req, res) => {
