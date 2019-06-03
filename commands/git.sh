@@ -1,10 +1,10 @@
 #/bin/sh
 
 # Fetch the newest code
-git fetch chillbot master
+git fetch origin master
 
 # Hard reset
-git reset --hard chillbot/master
+git reset --hard origin/master
 
 # Force pull
-git pull chillbot master --force
+git pull origin master --force
