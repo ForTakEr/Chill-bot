@@ -110,7 +110,7 @@ app.post('/git', (req, res) => {
         if (err) console.log(err);
       });
       cmd.run('refresh');
-
+      console.log('test')
       console.log(`> [GIT] Updated with origin/master\n` + `      Latest commit: ${commit}`);
     }
     return res.sendStatus(200);
