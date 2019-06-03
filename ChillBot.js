@@ -97,6 +97,10 @@ var hash;
 require('child_process').exec('git rev-parse HEAD', function(err, stdout){
   hash = stdout.slice(0,7)
 })
+var commit;
+require('child_process').exec('git rev-parse HEAD_COMMIT', function(err, out){
+  commit = out;
+})
 
 app.post('/git', (req, res) => {
     if (req.headers['x-github-event'] === 'push') {
@@ -107,11 +111,7 @@ app.post('/git', (req, res) => {
       });
       cmd.run('refresh');
 
-      let commits = req.body.head_commit.message.split("\n").length == 1 ?
-      req.body.head_commit.message :
-      req.body.head_commit.message.split("\n").map((el, i) => i !== 0 ? "                       " + el : el).join("\n");
-
-      console.log(`> [GIT] Updated with origin/master\n` + `      Latest commit: ${commits}`);
+      console.log(`> [GIT] Updated with origin/master\n` + `      Latest commit: ${commit}`);
     }
     return res.sendStatus(200);
   });
