@@ -106,8 +106,12 @@ app.post('/git', (req, res) => {
         if (err) console.log(err);
       });
       cmd.run('refresh');
-      let commit = req.body.head_commit.message;
-      console.log('> [GITHUB] Updated with ChillBot/master | Hash: ' + hash + ' | Commit: ' + commit);
+      let commits = req.body.head_commit.message.split("\n").length == 1 ?
+      req.body.head_commit.message :
+      req.body.head_commit.message.split("\n").map((el, i) => i !== 0 ? "                       " + el : el).join("\n");
+      
+      console.log(`> [GIT] Updated with origin/master\n` + 
+                    `        Latest commit: ${commits}`);
     }
     return res.sendStatus(200);
   });
