@@ -98,7 +98,7 @@ require('child_process').exec('git rev-parse HEAD', function(err, stdout){
   hash = stdout.slice(0,7)
 })
 var commit;
-require('child_process').exec('git body head_commit', function(err, out){
+require('child_process').exec('git head_commit', function(err, out){
   commit = out.toString();
 })
 
