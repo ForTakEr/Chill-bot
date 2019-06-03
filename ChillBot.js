@@ -99,7 +99,7 @@ require('child_process').exec('git rev-parse HEAD', function(err, stdout){
 })
 var commit;
 require('child_process').exec('git rev-parse commit', function(err, out){
-  commit = out.toString();
+  commit = out;
 })
 
 app.post('/git', (req, res) => {
