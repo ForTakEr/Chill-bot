@@ -98,7 +98,7 @@ require('child_process').exec('git rev-parse HEAD', function(err, stdout){
   hash = stdout.slice(0,7)
 })
 var commit;
-require('child_process').exec('git head_commit', function(err, out){
+require('child_process').exec('git rev-parse "$VAR^{commit}"', function(err, out){
   commit = out.toString();
 })
 
@@ -110,7 +110,6 @@ app.post('/git', (req, res) => {
         if (err) console.log(err);
       });
       cmd.run('refresh');
-      console.log('test')
       console.log(`> [GIT] Updated with origin/master\n` + `      Latest commit: ${commit}`);
     }
     return res.sendStatus(200);
