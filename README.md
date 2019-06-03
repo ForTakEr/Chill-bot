@@ -1,1 +1,1 @@
-# Chill bot
+# ChillBot
