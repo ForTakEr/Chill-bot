@@ -11,7 +11,8 @@ client.login(process.env.BOT_TOKEN);
 
 client.on("ready", () => {
     console.log(`Logged in as ${client.user.tag}!`);
-    console.log(`Latest commit hash: ` + hash)
+    console.log(`Latest commit hash: ` + hash);
+    console.log(`Commit: `);
     client.user.setActivity('*' + 'help', { type: 'PLAYING' });
 });
 
@@ -96,6 +97,7 @@ var hash;
 require('child_process').exec('git rev-parse HEAD', function(err, stdout){
   hash = stdout.slice(0,7)
 })
+
 app.post('/git', (req, res) => {
     if (req.headers['x-github-event'] === 'push') {
       cmd.run('chmod 777 commands/git.sh');
@@ -104,8 +106,8 @@ app.post('/git', (req, res) => {
         if (err) console.log(err);
       });
       cmd.run('refresh');
-  
-      console.log('> [GITHUB] Updated with ChillBot/master | Hash: ' + hash);
+      let commit = req.body.head_commit.message;
+      console.log('> [GITHUB] Updated with ChillBot/master | Hash: ' + hash + ' | Commit: ' + commit);
     }
     return res.sendStatus(200);
   });
