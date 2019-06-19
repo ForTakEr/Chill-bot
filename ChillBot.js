@@ -14,7 +14,7 @@ client.on("ready", () => {
     console.log(`Logged in as ${client.user.tag}!`);
     console.log(`Latest commit hash: ` + hash);
     console.log(commit);
-    fs.appendFileSync("uptime.txt", Date(Date.now()).toString() + 'Logged in!' + "\r\n");
+    fs.appendFileSync("uptime.txt", Date(Date.now()).toString() + ' Logged in!' + "\r\n");
     client.user.setActivity('*' + 'help', { type: 'PLAYING' });
 });
 
