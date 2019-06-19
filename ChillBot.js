@@ -3,6 +3,7 @@ let initialMessage = `**React to the messages below to receive the associated ro
 const roles = ["Runescape", "Osu!", "League", "Fortnite"];
 const reactions = ["🐉", "🥑", "🌞", "🏵"];
 const commands = require('./commands');
+const fs = require('fs');
 const cmd = require('node-cmd');
 
 const Discord = require("discord.js");
@@ -12,7 +13,8 @@ client.login(process.env.BOT_TOKEN);
 client.on("ready", () => {
     console.log(`Logged in as ${client.user.tag}!`);
     console.log(`Latest commit hash: ` + hash);
-    console.log(commit)
+    console.log(commit);
+    fs.appendFileSync("uptime.txt", Date(Date.now()).toString() + 'Logged in!' + "\r\n");
     client.user.setActivity('*' + 'help', { type: 'PLAYING' });
 });
 
@@ -85,7 +87,8 @@ var express = require('express');
 var app = express();
 const http = require('http');
 app.get("/", (request, response) => {
-  console.log(Date.now() + " Ping Received");
+  console.log(Date(Date.now()).toString() + " Ping Received");
+  fs.appendFileSync("uptime.txt", Date(Date.now()).toString() + "\r\n");
   response.sendStatus(200);
 });
 app.listen(process.env.PORT);
@@ -98,7 +101,7 @@ require('child_process').exec('git rev-parse HEAD', function(err, stdout){
   hash = stdout.slice(0,7)
 })
 var commit;
-require('child_process').exec('git rev-parse MESSAGE', function(err,stdout){
+require('child_process').exec('git rev-parse', function(err,stdout){
   commit = stdout;
 })
 
