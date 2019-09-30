@@ -10,4 +10,4 @@ git reset --hard origin/master
 git pull origin master --force
 
 # Refresh the project so the code updates
-Refresh
+refresh
