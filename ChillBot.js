@@ -88,13 +88,16 @@ var app = express();
 const http = require('http');
 app.get("/", (request, response) => {
   console.log(Date(Date.now()).toString() + " Ping Received");
-  fs.appendFileSync("uptime.txt", Date(Date.now()).toString() + "\r\n");
   response.sendStatus(200);
 });
 app.listen(process.env.PORT);
 setInterval(() => {
   http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
 }, 270000);
+
+setInterval(() =>{
+  fs.appendFileSync("uptime.txt", Date(Date.now()).toString() + "\r\n");
+}, 810000)
 
 var hash;
 require('child_process').exec('git rev-parse HEAD', function(err, stdout){
