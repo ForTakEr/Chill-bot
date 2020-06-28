@@ -1,0 +1,16 @@
+version: '3.5'
+services: 
+    chillbot:
+        build: .
+        image: local/chillbot
+        environment: 
+            SERVICE_NAME: chillbot
+            PORT: 9999
+        volumes: 
+            - .:/app
+            - ./node_modules:/app/node_modules
+        ports: 
+        - '9999:9999'
+        command: "node /app/chillbot.js"
+        network_mode: bridge
+        restart: always
