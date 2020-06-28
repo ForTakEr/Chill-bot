@@ -4,7 +4,7 @@ const roles = ["Runescape", "Osu!", "League", "Fortnite"];
 const reactions = ["🐉", "🥑", "🌞", "🏵"];
 const commands = require("./commands");
 const fs = require("fs");
-const cmd = require("node-cmd");
+require('dotenv').config();
 
 const Discord = require("discord.js");
 const client = new Discord.Client();
