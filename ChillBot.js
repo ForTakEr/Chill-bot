@@ -12,7 +12,6 @@ client.login(process.env.BOT_TOKEN);
 
 client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`);
-  console.log(`Latest commit hash: ` + hash);
   fs.appendFileSync(
     "uptime.txt",
     Date(Date.now()).toString() + " Logged in!" + "\r\n"
